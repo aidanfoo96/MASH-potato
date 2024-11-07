@@ -1,6 +1,6 @@
 rule compare_genomes: 
     message: "compare input genomes using MASH"
-    shell: """
-    mash sketch genomes/*
-    
-    """
+    output: 
+        "results/reference.msh"
+    shell: 
+        "mash sketch genomes/* > {output}"
