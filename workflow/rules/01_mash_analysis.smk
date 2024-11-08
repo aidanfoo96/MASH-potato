@@ -38,3 +38,12 @@ rule compare_genomes:
     shell: 
         "mash dist {input.sketch_a} {input.sketch_b} > {output}"
 
+rule plot_mash: 
+    message: "plot the MASH results in R"
+    input: 
+        "../results/mash_distance.tab"
+    output:
+        "../results/plots/mash_plot.pdf"
+    conda:
+        "../envs/rstat.yaml"
+        
