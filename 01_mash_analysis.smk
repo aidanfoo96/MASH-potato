@@ -1,3 +1,8 @@
+"""
+Analyse genomes using MASH 
+
+"""
+
 def get_genome_inputs(wildcards):
     return config["SAMPLES"].values()
 
@@ -7,6 +12,8 @@ rule sketch_genomes:
         get_genome_inputs
     output: 
         "results/reference.msh"
+    conda: 
+        "envs/mash.yaml"
     log: 
         "logs/MASH/mash_sketch.log"
     threads: 8 
@@ -22,6 +29,8 @@ rule compare_genomes:
         sketch_b = "results/reference.msh"
     output: 
         "results/mash_distance.tab"
+    conda: 
+        "envs/mash.yaml"
     log: 
         "logs/MASH/mash_compare.log"
     benchmark:
