@@ -1,4 +1,4 @@
-SAMPLES = ["AA010_contigs.fa", "AS011_contigs.fa", "AS013_contigs.fa", "AS031_contigs.fa"]
+configfile: "config.yaml"
 
 rule all:
     input:
@@ -7,9 +7,10 @@ rule all:
 rule sketch_genomes: 
     message: "compare input genomes using MASH"
     input: 
-        genomes = expand("genomes/{sample}", sample = SAMPLES)
+        expand("{sample}", sample = config["SAMPLES"].values()) # values exludes the keys in the dictionary
     output: 
         "results/reference.msh"
+    threads: 8 
     shell: 
         "mash sketch {input} -o {output}"
 
