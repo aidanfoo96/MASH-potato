@@ -4,7 +4,7 @@ Analyse genomes using MASH
 """
 
 def get_genome_inputs(wildcards):
-    return config["SAMPLES"].values()
+    return samples_dict.values()
 
 rule sketch_genomes: 
     message: "compare input genomes using MASH"
@@ -37,3 +37,4 @@ rule compare_genomes:
         "benchmarks/mash_compare.benchmarks.txt"
     shell: 
         "mash dist {input.sketch_a} {input.sketch_b} > {output}"
+
