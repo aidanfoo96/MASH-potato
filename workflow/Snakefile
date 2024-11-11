@@ -11,8 +11,15 @@ samples_df = pd.read_csv("../config/samples.tsv", sep = "\t")
 # conver dataframe to a dictionary with ID as key and filepath as value
 samples_dict = dict(zip(samples_df['SampleID'], samples_df['FilePath']))
 
-include: "rules/01_mash_analysis.smk"
+# specify a config file 
+configfile: "../config/config.yaml"
 
+# specify rules 
+include: "rules/RunPipelineFunction.smk"
+include: "rules/01_mash_analysis.smk"
+include: "rules/02_QUAST_analysis.smk"
+
+# rule all to run the pipeline
 rule all:
     input:
-        "../results/mash_distance.tab"
+        RunPipeline

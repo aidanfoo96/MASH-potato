@@ -1,0 +1,10 @@
+# Config file to configure the pipeline
+
+MASH: 
+  Activate: True
+
+QUAST: 
+  Activate: True
+  Threads: 3
+  RunFaster: 
+  
