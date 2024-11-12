@@ -11,7 +11,6 @@ jobs:
       # Set strict channel priority and update conda
       - name: Update Conda and configure channels
         run: |
-          conda install -n base -c defaults conda=23.1.0  # Update conda to a newer version
           conda config --set channel_priority strict
           conda config --add channels conda-forge  # Ensures conda-forge is prioritized
 
