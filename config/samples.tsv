@@ -1,4 +1,4 @@
 SampleID	FilePath
-AA010	../data/genomes/AA010_contigs.fa
-AS011	../data/genomes/AS011_contigs.fa
-AS013	../data/genomes/AS013_contigs.fa
+AA010	data/genomes/AA010_contigs.fa
+AS011	data/genomes/AS011_contigs.fa
+AS013	data/genomes/AS013_contigs.fa
