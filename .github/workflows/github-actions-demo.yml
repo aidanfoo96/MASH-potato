@@ -1,27 +1,25 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+
+      # Set strict channel priority and update conda
+      - name: Update Conda and configure channels
         run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          conda install -n base -c defaults conda=23.1.0  # Update conda to a newer version
+          conda config --set channel_priority strict
+          conda config --add channels conda-forge  # Ensures conda-forge is prioritized
+
       - name: Testing
         uses: snakemake/snakemake-github-action@v1
         with:
           directory: '.'
           snakefile: 'workflow/Snakefile'
           args: '--cores 1 --use-conda --conda-cleanup-pkgs cache --configfile config/config.yaml'
-          stagein: 'conda config --set channel_priority flexible' # additional preliminary commands to run (can be multiline)
           show-disk-usage-on-error: true
            
