@@ -22,5 +22,6 @@ jobs:
           directory: '.'
           snakefile: 'workflow/Snakefile'
           args: '--cores 1 --use-conda --conda-cleanup-pkgs cache --configfile config/config.yaml'
-          stagein: '' # additional preliminary commands to run (can be multiline)
+          stagein: 'conda config --set channel_priority flexible' # additional preliminary commands to run (can be multiline)
           show-disk-usage-on-error: true
+           
