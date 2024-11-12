@@ -3,5 +3,5 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - mash=2.2.2
+  - mash
   - libcblas  # Explicitly adding libcblas as a dependency
