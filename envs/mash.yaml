@@ -1,6 +1,7 @@
 channels:
-  - defaults
-  - bioconda
   - conda-forge
-dependencies: 
-- mash =2.2.2
+  - bioconda
+  - defaults
+dependencies:
+  - mash=2.2.2
+  - libcblas  # Explicitly adding libcblas as a dependency
