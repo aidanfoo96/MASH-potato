@@ -1,26 +1,26 @@
-name: GitHub Actions Demo
+name: test pipeline
+
 on: [push]
 
 jobs:
-  Explore-GitHub-Actions:
+  run-pipeline:
     runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
+    strategy:
+      matrix: 
+        python-version: ['3.10']
+    steps: 
+      - name: Set up python3
+        uses: actions/setup-python@v2
+        with: 
+          python-version: ${{ matrix.python-version }}
+          
+      - name: Checkout repository 
+        uses: actions/checkout@v2
 
-      # Set strict channel priority and update conda
-      - name: Update Conda and configure channels
-        run: |
-          conda config --set channel_priority strict
-          conda config --add channels defaults
-          conda config --add channels conda-forge  # Ensures conda-forge is prioritized
-          conda config --ad channels bioconda 
-
-      - name: Testing
-        uses: snakemake/snakemake-github-action@v1
-        with:
+      - name: Test workflow
+        uses: ezherman/snakemake-github-action@5027c0e706ada924ab91e0501bd92185fc98de3c
+        with: 
           directory: '.'
           snakefile: 'workflow/Snakefile'
-          args: '--cores 1 --use-conda --configfile config/config.yaml'
-          show-disk-usage-on-error: true
-           
+          args: '--cores 4 --use-conda'
+          stagein: 'conda config --set channel_priority flexible'
