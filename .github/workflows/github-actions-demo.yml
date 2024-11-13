@@ -12,7 +12,9 @@ jobs:
       - name: Update Conda and configure channels
         run: |
           conda config --set channel_priority strict
+          conda config --add channels defaults
           conda config --add channels conda-forge  # Ensures conda-forge is prioritized
+          conda config --ad channels bioconda 
 
       - name: Testing
         uses: snakemake/snakemake-github-action@v1
