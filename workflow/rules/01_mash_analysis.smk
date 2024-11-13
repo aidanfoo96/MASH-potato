@@ -36,6 +36,3 @@ rule compare_genomes:
         "benchmarks/mash_compare.benchmarks.txt"
     shell: 
         "mash dist {input.sketch_a} {input.sketch_b} > {output}"
-
-
-        

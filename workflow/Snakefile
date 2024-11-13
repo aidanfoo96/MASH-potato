@@ -4,6 +4,9 @@ Author: Aidan Foo
 """
 
 import pandas as pd
+import json
+import os
+wkdir = os.getcwd()
 
 # read sample table as a dataframe
 samples_df = pd.read_csv("config/samples.tsv", sep = "\t")
@@ -12,7 +15,7 @@ samples_df = pd.read_csv("config/samples.tsv", sep = "\t")
 samples_dict = dict(zip(samples_df['SampleID'], samples_df['FilePath']))
 
 # specify a config file 
-configfile: "../config/config.yaml"
+configfile: "config/config.yaml"
 
 # specify rules 
 include: "rules/RunPipelineFunction.smk"
