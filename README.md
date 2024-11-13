@@ -3,3 +3,4 @@
 # MASH-potato
 Snakemake pipeline to run MASH on a set of bacterial genomes 
 
+Currently under development
